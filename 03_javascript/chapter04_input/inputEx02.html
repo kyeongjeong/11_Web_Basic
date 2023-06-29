@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>prompt</title>
+	<script>
+
+		/*
+		
+			[형식]
+			
+			prompt("안내문자열" , "기본값");
+			
+			- 기본값은 생략가능하다.
+			- 기본 데이터 타입은 문자열이다.
+			- 숫자 타입의 데이터는 추가적으로 숫자형태로 형변환을 해주어야 한다.
+			
+		*/
+
+		var getName = prompt("이름을 입력하세요.", "000");
+
+		var getHTML = prompt("html 점수를 입력하세요");
+		var getCSS = prompt("css 점수를 입력하세요");
+		var getJS = prompt("js 점수를 입력하세요");
+
+		var total = Number(getHTML) + Number(getCSS) + Number(getJS);
+		document.write("<h1>이름 : " + getName + "</h1>");
+		document.write("<p>총점 : " + total + "</p>");
+
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>

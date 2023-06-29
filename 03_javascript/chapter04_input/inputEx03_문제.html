@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>연습예시</title>
+	<script>
+
+		// 문제 1) 숫자 2개를 입력받아, 합 출력
+		var n1 = prompt("첫 번째 숫자 입력");
+		var n2 = prompt("두 번째 숫자 입력");
+		var total = Number(n1) + Number(n2);
+		document.write("두 숫자의 합 : " + total);
+
+		// 문제 2) 숫자 1개를 입력받아, 홀수이면 true 출력
+		var n3 = prompt("숫자 입력");
+		var isODD = (n2 % 2 != 0);
+		document.write("<br>홀수인가? : " + isODD);
+
+		// 문제 3) 성적을 입력받아, 60점 이상이고 100점 이하이면 true 출력
+		var grade = prompt("성적 입력");
+		if (grade >= 60 && grade <= 100)
+			var isTrue = true;
+		else
+			var isTrue = false;
+		document.write("<br>60점 이상, 100점 이하인가? : " + isTrue);
+
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>
