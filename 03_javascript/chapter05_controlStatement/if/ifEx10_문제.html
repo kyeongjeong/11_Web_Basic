@@ -19,7 +19,21 @@
 	 */
 	
 	var num = 36; 
-		
+	var count = 0;
+
+	if((num / 10 == 3) || (num / 10 == 6) || (num / 10 == 9))
+		++count;
+	
+	if((num % 10 == 3) || (num % 10 == 6) || (num % 10 == 9))
+		++count;
+
+	if(Number(count) == 2)
+		document.write("짝짝");
+	else if(Number(count) == 1)
+		document.write("짝");
+	else
+		document.write(num);
+
 </script>
 </head>
 <body>

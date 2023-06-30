@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>연습예시</title>
+	<script>
+
+		/*
+		 * # 소수찾기[2단계]
+		 * 
+		 * 숫자 2부터 prompt로 입력한 수까지의 소수를 화면에 출력하고 소수의 개수를 출력해 보시오.
+		 * 
+		 */
+
+		var primeNumber = prompt("숫자");
+		primeNumber = Number(primeNumber);
+
+		var numCount = 0;
+		for (var i = 1; i <= primeNumber; i++) {
+
+			var count = 0;
+			for (var j = 1; j <= i; j++) {
+
+				if ((i % j) == 0)
+					++count;
+			}
+
+			if (count == 2) {
+				document.write(i + " ");
+				++numCount;
+			}
+		}
+		document.write("<br>소수의 개수 : " + numCount);
+
+	</script>
+</head>
+
+<body>
+</body>
+
+</html>

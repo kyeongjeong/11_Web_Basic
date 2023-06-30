@@ -22,8 +22,21 @@
 	var yourAcc = "4321";
 	var yourMoney = 12000;
 	
-	prompt("이체할 계좌번호를 입력하세요 : ");
-	
+	var inputAcc = prompt("이체할 계좌번호를 입력하세요 : ");
+	if(inputAcc != yourAcc)
+		document.write("계좌번호가 틀렸습니다.");
+	else {
+
+		var inputMoney = prompt("이체할 금액을 입력하세요 : ");
+
+		document.write("yourMoney : " + yourMoney + " -> ");
+		yourMoney += Number(inputMoney);
+		document.write(yourMoney + "<br>");
+
+		document.write("myMoney : " + myMoney + " -> ");
+		myMoney -= Number(inputMoney);
+		document.write(myMoney + "<br>");
+	}
 	
 		
 </script>
