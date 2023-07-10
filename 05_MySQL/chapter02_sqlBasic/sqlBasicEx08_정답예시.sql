@@ -1,4 +1,4 @@
-USE DML_PRACTICE;
+USE DML_TEST;
 
 CREATE TABLE BOOK(
 	BOOK_ID 		INT,
@@ -169,3 +169,57 @@ SELECT
 FROM
 		BOOK;
 
+
+# 15) '나미야 잡화점의 기적' 의 할인률을 5로 변경하기.
+UPDATE
+		BOOK
+SET
+		DISCOUNT_RATE = 5
+WHERE
+		TITLE = '나미야 잡화점의 기적';
+		
+SELECT * FROM BOOK;
+		
+
+# 16) '인간 실격'의 판매량을 10증가하기.
+UPDATE
+		BOOK
+SET
+		SALES_CNT = SALES_CNT + 10
+WHERE
+		TITLE = '인간 실격';
+		
+SELECT * FROM BOOK;
+
+		
+# 17) 할인률이 20이 넘은 데이터들의 할인률을 10으로 변경하기.
+UPDATE
+		BOOK
+SET
+		DISCOUNT_RATE = 10
+WHERE
+		DISCOUNT_RATE >= 20;
+
+SELECT * FROM BOOK;		
+		
+
+# 18) 출판일이 2015년 이전의 판매량과 할인률을 0으로 변경하기
+UPDATE
+		BOOK
+SET
+		SALES_CNT = 0,
+		DISCOUNT_RATE = 0
+WHERE
+		PUBLISHING_DT < '2015-01-01';
+
+SELECT * FROM BOOK;	
+
+
+# 19) '컴퓨터활용능력' , '초등학생이 알아야할 숫자' 데이터를 삭제하기
+DELETE FROM BOOK WHERE TITLE IN ('컴퓨터활용능력','초등학생이 알아야할 숫자');
+SELECT * FROM BOOK;	
+
+
+# 20) 출판일이 2015년 이전의 데이터를 삭제하기
+DELETE FROM BOOK WHERE PUBLISHING_DT < '2015-01-01'; 
+SELECT * FROM BOOK;		

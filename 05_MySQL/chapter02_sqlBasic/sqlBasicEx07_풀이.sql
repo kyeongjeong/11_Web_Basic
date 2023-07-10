@@ -79,3 +79,23 @@ SELECT EMP_NO, NAME, SALARY FROM EMP WHERE SALARY NOT BETWEEN 1200 AND 3700;
 
 # 17) 급여가 높은 순으로 조회하되 급여가 같을 경우 이름의 알파벳이 빠른 사원순으로 사번,이름,월급여를 조회하시오. 
 SELECT EMP_NO, NAME, SALARY FROM EMP ORDER BY SALARY DESC, NAME;
+
+# 18) 부서번호가 10인 직원의 급여를 + 1000으로 수정하시오.
+update emp set salary = salary + 1000 where dept_no=10;
+        
+# 19) 이름이 'SMITH'인 직원의 입사일자를 '1980-12-18'일로 수정하시오.
+update emp set hire_date='1980-12-18' where name='SMITH';
+
+# 20) 직책이 'PRESIDENT'인 직원의 커미션을 3000으로 수정하시오.
+update emp set comm=3000 where job='PRESIDENT';
+
+# 21) '1981'년에 입사한 직원의 급여를 기존급여에 +10으로 수정하시오.
+update emp set salary = salary + 10 where hire_date between '1981-01-01' and '1981-12-31';
+
+# 22) 이름이 'WARD'인 사원을 테이블에서 삭제하시오.
+
+		
+# 23) 부서번호가 30인 직원을 테이블에서 삭제하시오.  
+
+   
+# 24) 사원번호 7900 , 7902 , 7934를 테이블에서 삭제하시오.  

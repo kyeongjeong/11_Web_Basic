@@ -244,4 +244,68 @@ FROM
 ORDER BY 
 		SALARY DESC,
 	    NAME ASC;		
-		    
+
+
+# 18) 부서번호가 10인 직원의 급여를 + 1000으로 수정하시오.
+
+UPDATE
+		EMP
+SET
+		SALARY = SALARY + 1000
+WHERE
+		DEPT_NO = 10;
+        
+        
+# 19) 이름이 'SMITH'인 직원의 입사일자를 '1980-12-18'일로 수정하시오.
+
+UPDATE
+		EMP
+SET
+		HIRE_DATE = '1980-12-18'
+WHERE
+		NAME = 'SMITH';
+
+
+# 20) 직책이 'PRESIDENT'인 직원의 커미션을 3000으로 수정하시오.
+
+UPDATE
+		EMP
+SET
+		COMM = 3000
+WHERE
+		JOB = 'PRESIDENT';
+
+
+# 21) '1981'년에 입사한 직원의 급여를 기존급여에 +10으로 수정하시오.
+
+UPDATE
+		EMP
+SET
+		SALARY = SALARY + 10
+WHERE
+		HIRE_DATE BETWEEN '1981-01-01' AND '1981-12-31';
+
+
+# 22) 이름이 'WARD'인 사원을 테이블에서 삭제하시오.
+
+DELETE FROM
+		EMP
+WHERE
+		NAME = 'WARD';
+ 
+		
+# 23) 부서번호가 30인 직원을 테이블에서 삭제하시오.  
+      
+DELETE FROM
+		EMP
+WHERE
+		DEPT_NO = 30;
+   
+   
+# 24) 사원번호 7900 , 7902 , 7934를 테이블에서 삭제하시오.
+
+DELETE FROM
+		EMP
+WHERE
+		EMP_NO IN (7900 , 7902 , 7934);       
+      
