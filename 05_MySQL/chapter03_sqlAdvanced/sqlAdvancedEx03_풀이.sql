@@ -77,72 +77,231 @@ INSERT INTO RENT_TB VALUES('rent20' , 2 , 'car16' , 'user5');
 
 
 # 1) 렌트일이 5일 이상인 차량정보 조회하기
-
+SELECT
+		C.*
+FROM
+	 RENT_TB R
+  INNER JOIN CAR_TB C
+		  ON R.CAR_CD = C.CAR_CD
+		 AND R.RENT_PERIOD >= 5;
         
         
 # 2) 렌트일이 5일 이상인 회원정보 조회하기
+SELECT
+		M.*
+FROM
+		RENT_TB R
+		INNER JOIN MEMBER_TB M
+		ON M.MEMBER_ID = R.MEMBER_ID
+WHERE
+		R.RENT_PERIOD >= 5;
 
 
 
 # 3) '스타렉스'차량을 렌트한 회원정보를 조회하기
-
+SELECT
+		M.*
+FROM
+		RENT_TB R
+		INNER JOIN MEMBER_TB M
+		ON M.MEMBER_ID = R.MEMBER_ID
+        INNER JOIN CAR_TB C
+        ON C.CAR_CD = R.CAR_CD
+WHERE
+		C.CAR_NM = '스타렉스';
 
 
 # 4) 'k3' , 'k5' , 'k7'을 주문한 회원정보를 조회하기
-
+SELECT
+		M.*
+FROM
+		RENT_TB R
+		INNER JOIN MEMBER_TB M
+		ON M.MEMBER_ID = R.MEMBER_ID
+        INNER JOIN CAR_TB C
+        ON C.CAR_CD = R.CAR_CD
+WHERE
+		C.CAR_NM IN ('k3' , 'k5' , 'k7');
           
           
 # 5) '아반떼' 차량의 평균 렌트일 조회하기
-
+SELECT
+		AVG(RENT_PERIOD)
+FROM
+		RENT_TB R
+        INNER JOIN CAR_TB C
+        ON C.CAR_CD = R.CAR_CD
+WHERE
+		C.CAR_NM = '아반떼';
 
           
 # 6) '유저1'의 렌트 횟수 조회하기
-
+SELECT
+		COUNT(*)
+FROM
+		RENT_TB R
+		INNER JOIN MEMBER_TB M
+		ON M.MEMBER_ID = R.MEMBER_ID
+WHERE
+		M.MEMBER_NM = '유저1';
         
         
 # 7) 남성의 평균 렌트일 조회하기
-
+SELECT
+		AVG(R.RENT_PERIOD)
+FROM
+		RENT_TB R
+		INNER JOIN MEMBER_TB M
+		ON M.MEMBER_ID = R.MEMBER_ID
+WHERE
+		M.SEX = 'M';
 
 
 # 8) 20대 여성의 렌트일 조회하기
-
+SELECT
+		AVG(R.RENT_PERIOD)
+FROM
+		RENT_TB R
+		INNER JOIN MEMBER_TB M
+		ON M.MEMBER_ID = R.MEMBER_ID
+WHERE
+		M.SEX = 'F' AND
+        M.AGE BETWEEN 20 AND 29;
 
          
 # 9) 50000 ~ 100000 가격의 차량의 렌트횟수를 조회하기
-
+SELECT
+		COUNT(*)
+FROM
+		RENT_TB R
+        INNER JOIN CAR_TB C
+        ON C.CAR_CD = R.CAR_CD
+WHERE
+		C.PRICE BETWEEN 50000 AND 100000;
   
 
 # 10) 100000이상 가격의 차량의 렌트횟수를 조회하기
-
+SELECT
+		COUNT(*)
+FROM
+		RENT_TB R
+        INNER JOIN CAR_TB C
+        ON C.CAR_CD = R.CAR_CD
+WHERE
+		C.PRICE >= 100000;
          
          
 # 11) 2020년에 등록된 차량의 렌트 횟수를 조회하기
-
+SELECT
+		COUNT(*)
+FROM
+		RENT_TB R
+        INNER JOIN CAR_TB C
+        ON C.CAR_CD = R.CAR_CD
+WHERE
+		C.REG_DT BETWEEN '2020-01-01' AND '2020-12-31';
          
 
 # 12) 기아 자동차의 렌트횟수를 조회하기
-
+SELECT
+		COUNT(*) AS RENT_CNT
+FROM
+		RENT_TB R
+		INNER JOIN CAR_TB C
+		ON R.CAR_CD = C.CAR_CD
+WHERE
+		C.BRAND_NM = '기아';
       
  
 # 13) 브랜드별로 렌트 횟수를 조회하고 렌트수가 많은 순서대로 정렬하기
-
+SELECT
+		C.BRAND_NM,
+        COUNT(*)
+FROM
+		RENT_TB R
+		INNER JOIN CAR_TB C
+		ON R.CAR_CD = C.CAR_CD
+GROUP BY
+		C.BRAND_NM
+ORDER BY
+		COUNT(*) DESC;
 	
         
 # 14) 차량이 등록된 연도별로 렌트 횟수를 조회하기
-
+SELECT
+		SUBSTRING(REG_DT, 1, 4),
+        COUNT(*)
+FROM
+		RENT_TB R
+		INNER JOIN CAR_TB C
+		ON R.CAR_CD = C.CAR_CD
+GROUP BY
+		SUBSTRING(REG_DT, 1, 4)
+ORDER BY
+		COUNT(*) DESC;
 
 
 # 15) 차량이 등록된 연도별로 성별로 렌트 횟수를 조회하기
-
+SELECT
+		SUBSTRING(REG_DT, 1, 4),
+        M.SEX,
+        COUNT(*)
+FROM
+		RENT_TB R
+		INNER JOIN CAR_TB C
+		ON R.CAR_CD = C.CAR_CD
+        INNER JOIN MEMBER_TB M
+		ON M.MEMBER_ID = R.MEMBER_ID
+GROUP BY
+		SUBSTRING(REG_DT, 1, 4),
+        M.SEX;
        
 
 # 16) 차량이 등록된 연도별로 성별로 평균 렌트일을 조회하기
-        
+SELECT
+		SUBSTRING(REG_DT, 1, 4),
+        M.SEX,
+        AVG(R.RENT_PERIOD)
+FROM
+		RENT_TB R
+		INNER JOIN CAR_TB C
+		ON R.CAR_CD = C.CAR_CD
+        INNER JOIN MEMBER_TB M
+		ON M.MEMBER_ID = R.MEMBER_ID
+GROUP BY
+		SUBSTRING(REG_DT, 1, 4),
+        M.SEX;   
      
 
 # 17) 가장 많이 렌트된 차량의 이름과 렌트 횟수를 조회하기
-		
+SELECT
+		C.BRAND_NM,
+        COUNT(*)
+FROM
+		RENT_TB R
+		INNER JOIN CAR_TB C
+		ON R.CAR_CD = C.CAR_CD
+        INNER JOIN MEMBER_TB M
+		ON M.MEMBER_ID = R.MEMBER_ID
+GROUP BY
+		C.BRAND_NM
+ORDER BY
+		COUNT(*) DESC
+LIMIT 
+		1;
 
 
 # 18) 가장 많이 렌트한 회원의 아이디 , 연락처 , 렌트횟수를 조회하기
-
+SELECT
+		M.*,
+        COUNT(*)
+FROM
+		RENT_TB R
+		INNER JOIN CAR_TB C
+		ON R.CAR_CD = C.CAR_CD
+        INNER JOIN MEMBER_TB M
+		ON M.MEMBER_ID = R.MEMBER_ID
+GROUP BY
+		M.MEMBER_ID
+ORDER BY
+		COUNT(*) DESC;
